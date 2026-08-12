@@ -1,3 +1,18 @@
 guidelines.md
 pageGuide.md
 /references
+
+# Next.js
+/node_modules
+/.next
+/out
+
+# Environment variables
+.env*
+!.env.example
+
+# Tooling
+*.tsbuildinfo
+.vercel
+.validation
+npm-debug.log*
