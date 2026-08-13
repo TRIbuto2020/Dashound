@@ -21,6 +21,8 @@ Rebuild the static site as a content platform without interrupting the productio
 5. **Persistence** — Supabase Postgres for structured content and Supabase Storage for media.
 
 The UI must never query Supabase directly. It depends on the repository interface so local and remote providers remain interchangeable.
+Published content uses a stateless Supabase client with the publishable key so static generation never
+depends on request cookies. Authenticated administration uses the cookie-aware server client.
 
 ## Rendering model
 

@@ -7,7 +7,7 @@ import type {
   Recommendation,
   RecommendationCategory,
 } from "@/src/core/content/types";
-import { createSupabaseServerClient } from "@/src/lib/supabase/server";
+import { createSupabasePublicClient } from "@/src/lib/supabase/public";
 
 type PageRow = {
   id: string;
@@ -86,7 +86,7 @@ function mapRecommendation(recommendation: RecommendationRow): Recommendation {
 
 export class SupabaseContentRepository implements ContentRepository {
   async listPublishedPages(): Promise<ContentPage[]> {
-    const supabase = await createSupabaseServerClient();
+    const supabase = createSupabasePublicClient();
     const { data, error } = await supabase
       .from("pages")
       .select("*")
@@ -101,7 +101,7 @@ export class SupabaseContentRepository implements ContentRepository {
   }
 
   async getPublishedPage(slug: string): Promise<ContentPage | null> {
-    const supabase = await createSupabaseServerClient();
+    const supabase = createSupabasePublicClient();
     const { data: pageData, error: pageError } = await supabase
       .from("pages")
       .select("*")
@@ -134,7 +134,7 @@ export class SupabaseContentRepository implements ContentRepository {
   }
 
   async listRecommendationCategories(): Promise<RecommendationCategory[]> {
-    const supabase = await createSupabaseServerClient();
+    const supabase = createSupabasePublicClient();
     const { data, error } = await supabase
       .from("recommendation_categories")
       .select("id, title, description, position")
@@ -148,7 +148,7 @@ export class SupabaseContentRepository implements ContentRepository {
   }
 
   async listPublishedRecommendations(): Promise<Recommendation[]> {
-    const supabase = await createSupabaseServerClient();
+    const supabase = createSupabasePublicClient();
     const { data, error } = await supabase
       .from("recommendations")
       .select("*")

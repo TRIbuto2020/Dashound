@@ -19,6 +19,7 @@
 ## Architecture Rules
 
 - Public pages and components must depend on `ContentRepository`, never directly on Supabase.
+- Use the stateless public Supabase client for published content and the cookie-aware server client only for authenticated administration.
 - Keep local and Supabase repositories interchangeable.
 - Store reusable content shapes in `src/core/content/types.ts`.
 - Render project sections through reusable typed blocks.
