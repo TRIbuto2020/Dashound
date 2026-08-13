@@ -9,7 +9,8 @@ The application works with local content until a Supabase project is available.
 3. Copy `.env.example` to `.env.local` and fill the Supabase URL and publishable key.
 4. Set `ADMIN_EMAIL` to the only email initially allowed into the administration panel.
 5. Keep `CONTENT_SOURCE=local` while validating authentication and importing data.
-6. Request the first magic link through `/admin/login` so the Auth user is created.
+6. In Authentication > Users, create the administrator with the same email configured in
+   `ADMIN_EMAIL`, a strong password, and a confirmed email.
 7. Add that Auth user to `public.admin_users` using the SQL editor:
 
    ```sql

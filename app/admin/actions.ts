@@ -9,6 +9,7 @@ import { createSupabaseServerClient } from "@/src/lib/supabase/server";
 
 const loginSchema = z.object({
   email: z.email(),
+  password: z.string().min(8),
 });
 
 const pageSchema = z.object({
@@ -50,29 +51,28 @@ function ensureSupabaseConfiguration() {
   }
 }
 
-export async function requestMagicLink(formData: FormData) {
+export async function signIn(formData: FormData) {
   ensureSupabaseConfiguration();
-  const result = loginSchema.safeParse({ email: formData.get("email") });
+  const result = loginSchema.safeParse({
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
 
   if (!result.success || result.data.email !== serverEnvironment.ADMIN_EMAIL) {
     redirect("/admin/login?error=unauthorized");
   }
 
   const supabase = await createSupabaseServerClient();
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-  const { error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signInWithPassword({
     email: result.data.email,
-    options: {
-      emailRedirectTo: `${siteUrl}/auth/confirm`,
-      shouldCreateUser: true,
-    },
+    password: result.data.password,
   });
 
   if (error) {
-    redirect("/admin/login?error=delivery");
+    redirect("/admin/login?error=credentials");
   }
 
-  redirect("/admin/login?sent=true");
+  redirect("/admin");
 }
 
 export async function signOut() {

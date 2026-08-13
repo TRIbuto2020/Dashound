@@ -48,7 +48,7 @@ export default async function AdminDashboardPage() {
         <p className="admin-panel__eyebrow">Área restrita</p>
         <h1 className="admin-panel__title">Entre para administrar a Dashound.</h1>
         <Link className="ui-button" href="/admin/login">
-          Solicitar link de acesso
+          Entrar no painel
         </Link>
       </section>
     );
