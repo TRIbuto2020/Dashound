@@ -1,10 +1,16 @@
 import Link from "next/link";
-import { signOut } from "@/app/admin/actions";
+import { importLocalContent, signOut } from "@/app/admin/actions";
 import { getAdminUser } from "@/src/lib/auth";
 import { getContentRepository } from "@/src/lib/content";
+import { getLocalContentImportStatus } from "@/src/data/supabase/import-local-content";
 import { hasSupabaseEnvironment } from "@/src/lib/env";
 
-export default async function AdminDashboardPage() {
+type AdminDashboardPageProps = {
+  searchParams: Promise<{ import?: string }>;
+};
+
+export default async function AdminDashboardPage({ searchParams }: AdminDashboardPageProps) {
+  const { import: importResult } = await searchParams;
   const repository = getContentRepository();
   const [pages, recommendations] = await Promise.all([
     repository.listPublishedPages(),
@@ -54,6 +60,8 @@ export default async function AdminDashboardPage() {
     );
   }
 
+  const importStatus = await getLocalContentImportStatus();
+
   return (
     <section className="admin-panel">
       <div className="admin-panel__heading">
@@ -79,6 +87,39 @@ export default async function AdminDashboardPage() {
           <span className="admin-card__text">Adicionar e organizar links externos.</span>
         </Link>
       </div>
+      <section className="admin-card">
+        <span className="admin-card__eyebrow">Migração inicial</span>
+        <strong className="admin-card__title">Conteúdo local → Supabase</strong>
+        <span className="admin-card__text">
+          Páginas {importStatus.pages.current}/{importStatus.pages.expected} · Blocos{" "}
+          {importStatus.blocks.current}/{importStatus.blocks.expected} · Categorias{" "}
+          {importStatus.categories.current}/{importStatus.categories.expected} · Recomendações{" "}
+          {importStatus.recommendations.current}/{importStatus.recommendations.expected}
+        </span>
+        {importStatus.isComplete ? (
+          <p className="admin-notice">O conteúdo local já está integralmente importado.</p>
+        ) : importStatus.isEmpty ? (
+          <form action={importLocalContent}>
+            <button className="ui-button" type="submit">
+              Importar conteúdo local
+            </button>
+          </form>
+        ) : (
+          <p className="admin-notice admin-notice--error">
+            O banco contém dados parciais ou manuais. A importação automática foi bloqueada para
+            não sobrescrever conteúdo.
+          </p>
+        )}
+        {importResult === "complete" && (
+          <p className="admin-notice">Importação concluída e conferida.</p>
+        )}
+        {importResult === "error" && (
+          <p className="admin-notice admin-notice--error">
+            A importação falhou e os registros parciais foram removidos. Consulte os logs antes de
+            tentar novamente.
+          </p>
+        )}
+      </section>
     </section>
   );
 }

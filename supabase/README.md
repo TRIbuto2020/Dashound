@@ -18,7 +18,9 @@ The application works with local content until a Supabase project is available.
    select id from auth.users where email = 'your-admin@email.com';
    ```
 
-8. Import the current local content.
-9. Change `CONTENT_SOURCE=supabase` only after comparing the remote data with the local pages.
+8. Open `/admin` and use **Importar conteúdo local**. The importer only runs against empty content
+   tables, removes partial records after an error, and verifies all record counts.
+9. Confirm the migration summary in the dashboard.
+10. Change `CONTENT_SOURCE=supabase` only after comparing the remote data with the local pages.
 
 Never expose `SUPABASE_SERVICE_ROLE_KEY` through a variable prefixed with `NEXT_PUBLIC_`.

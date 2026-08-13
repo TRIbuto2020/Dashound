@@ -159,5 +159,6 @@
 - The recommendations page was synchronized from Katy's Linktree on 2026-07-22 and must be updated manually when that source changes.
 - `src/stylesBKUP2.css` is a historical backup and should remain untouched.
 - Keep `CONTENT_SOURCE=local` until the Supabase migration, authentication, and content import are validated.
+- Run the initial local-to-Supabase import only through the protected dashboard and only against empty content tables.
 - Never expose `SUPABASE_SERVICE_ROLE_KEY`; public configuration uses only the publishable key.
 - Keep `main` on the stable static deployment until the `next-rebuild` preview is explicitly approved.

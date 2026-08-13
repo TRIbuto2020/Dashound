@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdminUser } from "@/src/lib/auth";
+import { importLocalContentToSupabase } from "@/src/data/supabase/import-local-content";
 import { hasSupabaseEnvironment, serverEnvironment } from "@/src/lib/env";
 import { createSupabaseServerClient } from "@/src/lib/supabase/server";
 
@@ -80,6 +81,21 @@ export async function signOut() {
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
   redirect("/admin/login");
+}
+
+export async function importLocalContent() {
+  ensureSupabaseConfiguration();
+  await requireAdminUser();
+  let destination = "/admin?import=complete";
+
+  try {
+    await importLocalContentToSupabase();
+  } catch (error) {
+    console.error("Could not import local content into Supabase.", error);
+    destination = "/admin?import=error";
+  }
+
+  redirect(destination);
 }
 
 export async function createPage(formData: FormData) {
