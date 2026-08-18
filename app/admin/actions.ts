@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdminUser } from "@/src/lib/auth";
+import { pages as localPages } from "@/src/data/local/pages";
 import { importLocalContentToSupabase } from "@/src/data/supabase/import-local-content";
 import { hasSupabaseEnvironment, serverEnvironment } from "@/src/lib/env";
 import { createSupabaseServerClient } from "@/src/lib/supabase/server";
@@ -96,6 +97,90 @@ export async function importLocalContent() {
   }
 
   redirect(destination);
+}
+
+export async function syncTtLowbudgetPage() {
+  ensureSupabaseConfiguration();
+  await requireAdminUser();
+
+  const localPage = localPages.find((page) => page.slug === "tt-lowbudget");
+
+  if (!localPage) {
+    throw new Error("A fonte local da TT Lowbudget não foi encontrada.");
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { data: currentPage, error: pageLookupError } = await supabase
+    .from("pages")
+    .select("id")
+    .eq("slug", localPage.slug)
+    .single();
+
+  if (pageLookupError) {
+    throw new Error(`Não foi possível localizar a TT Lowbudget: ${pageLookupError.message}`);
+  }
+
+  const { data: currentBlocks, error: blockLookupError } = await supabase
+    .from("page_blocks")
+    .select("id, position")
+    .eq("page_id", currentPage.id)
+    .order("position");
+
+  if (blockLookupError) {
+    throw new Error(`Não foi possível localizar os blocos da TT: ${blockLookupError.message}`);
+  }
+
+  if (currentBlocks.length !== localPage.blocks.length) {
+    throw new Error(
+      "A quantidade de blocos no Supabase não corresponde à fonte local. Sincronização cancelada.",
+    );
+  }
+
+  const blocksMatchPositions = currentBlocks.every(
+    (block, position) => block.position === position,
+  );
+
+  if (!blocksMatchPositions) {
+    throw new Error("A ordem dos blocos no Supabase mudou. Sincronização cancelada.");
+  }
+
+  const { error: blockUpdateError } = await supabase.from("page_blocks").upsert(
+    localPage.blocks.map((block, position) => ({
+      id: currentBlocks[position].id,
+      page_id: currentPage.id,
+      type: block.type,
+      position,
+      payload: block,
+    })),
+  );
+
+  if (blockUpdateError) {
+    throw new Error(`Não foi possível atualizar os blocos da TT: ${blockUpdateError.message}`);
+  }
+
+  const { error: pageUpdateError } = await supabase
+    .from("pages")
+    .update({
+      kind: localPage.kind,
+      status: localPage.status,
+      eyebrow: localPage.eyebrow,
+      title: localPage.title,
+      summary: localPage.summary,
+      featured: localPage.featured,
+      featured_position: localPage.featuredPosition ?? null,
+      card: localPage.card,
+      seo: localPage.seo,
+      published_at: localPage.publishedAt ?? null,
+    })
+    .eq("id", currentPage.id);
+
+  if (pageUpdateError) {
+    throw new Error(`Não foi possível atualizar a TT Lowbudget: ${pageUpdateError.message}`);
+  }
+
+  revalidatePath("/");
+  revalidatePath("/projetos/tt-lowbudget");
+  redirect("/admin/paginas?synced=tt-lowbudget");
 }
 
 export async function createPage(formData: FormData) {

@@ -12,18 +12,18 @@ export default async function HomePage() {
     <>
       <section className="landing-hero" id="sobre">
         <div className="landing-hero__content">
-          <p className="hero-section__eyebrow">Endurance sem cerimônia</p>
+          <p className="hero-section__eyebrow">Triathlon e outras coisas...</p>
           <h2 className="landing-hero__title">
             A gente leva o esporte a sério. A nós mesmos, nem tanto.
           </h2>
           <p className="landing-hero__text">
-            A Dashound é onde Katy e Vitor transformam curiosidade em histórias, projetos e
-            experiências reais sobre triathlon, com pesquisa, improviso e espaço para mostrar
-            quando alguma coisa dá muito errado.
+            A Dashound é onde nós, Katy e Vitor, juntamos tudo que queremos compartilhar: nossos
+            projetos, vídeos, ideias e recomendações. O que parecer uma boa ideia vai aparecer por
+            aqui!
           </p>
           <div className="landing-hero__actions">
             <Link className="ui-button" href="#paginas">
-              Conheça os projetos
+              Conheça nossos projetos!
             </Link>
             <a
               className="ui-button"
@@ -60,50 +60,16 @@ export default async function HomePage() {
           <span className="landing-hero__stamp" aria-hidden="true">
             História
             <br />+<br />
-            diversão
+            bobagem
           </span>
         </div>
       </section>
 
-      <section className="section-block">
-        <h3 className="section-block__title">O que você encontra por aqui</h3>
-        <p className="section-block__text">
-          Conteúdo para quem gosta de esporte, mas não acredita que tudo precisa ser perfeito ou
-          caríssimo.
-        </p>
-        <div className="project-grid">
-          <article className="ui-card">
-            <p className="ui-card__eyebrow">Pesquisa</p>
-            <h4 className="ui-card__title">Histórias do esporte</h4>
-            <p className="ui-card__text">
-              Contexto, curiosidades e personagens que ajudam a entender como chegamos até aqui.
-            </p>
-          </article>
-          <article className="ui-card">
-            <p className="ui-card__eyebrow">Na prática</p>
-            <h4 className="ui-card__title">Projetos que começam com “e se?”</h4>
-            <p className="ui-card__text">
-              Ideias colocadas à prova com orçamento real, erros reais e soluções nem sempre
-              ortodoxas.
-            </p>
-          </article>
-          <article className="ui-card">
-            <p className="ui-card__eyebrow">Sem gatekeeping</p>
-            <h4 className="ui-card__title">Endurance possível</h4>
-            <p className="ui-card__text">
-              Equipamentos, referências e experiências para aproximar mais pessoas desse universo.
-            </p>
-          </article>
-        </div>
-      </section>
-
       <section className="section-block" id="sobre-nos">
-        <h3 className="section-block__title">
-          Duas pessoas, uma quantidade questionável de ideias
-        </h3>
+        <h3 className="section-block__title">Duas pessoas, talvez ideias demais...</h3>
         <p className="section-block__text">
-          Perspectivas diferentes, conectadas pela vontade de praticar esporte, aprender fazendo e
-          dividir o processo.
+          Perspectivas diferentes, unidas pela vontade de treinar, aprender coisas novas e
+          compartilhar o processo.
         </p>
         <div className="about-grid">
           <article className="about-card">
@@ -119,13 +85,13 @@ export default async function HomePage() {
               <p className="hero-section__eyebrow">Triatleta e criadora de conteúdo</p>
               <h4 className="about-card__title">Katy</h4>
               <p className="about-card__text">
-                Vive o triathlon entre treinos, provas e a curiosidade de entender tudo o que cerca
-                o esporte: equipamentos, tecnologia, histórias e aquelas regras que ninguém explica
-                direito.
+                Vive o triathlon entre treinos e o emprego CLT. Adora fazer provas e tem uma enorme
+                curiosidade de entender tudo o que cerca o esporte: equipamentos, tecnologia,
+                histórias e aquelas regras que ninguém explica direito.
               </p>
               <p className="about-card__text">
-                Transforma assuntos técnicos em conversas acessíveis, sempre a partir da experiência
-                real de uma atleta amadora que leva o esporte a sério sem perder a leveza.
+                Curte discutir assuntos técnicos de forma acessível, sempre a partir da vivência de
+                uma atleta amadora que leva o esporte a sério.
               </p>
             </div>
           </article>
@@ -143,12 +109,13 @@ export default async function HomePage() {
               <p className="hero-section__eyebrow">Esporte, tecnologia e projetos</p>
               <h4 className="about-card__title">Vitor</h4>
               <p className="about-card__text">
-                Olha para uma bicicleta usada, uma ideia improvável ou um problema técnico e
-                geralmente pergunta: “será que dá para fazer?”. Às vezes dá. Às vezes vira conteúdo.
+                Olha para uma bicicleta usada e o bolso começa a coçar. “Por que não?”. Às vezes é
+                uma baita ideia, às vezes é só furada. Mas sempre vai virar conteúdo!
               </p>
               <p className="about-card__text">
-                Mistura esporte, tecnologia e projetos para mostrar que aprender fazendo pode ser
-                mais interessante e mais divertido do que esperar pela solução perfeita.
+                Mistura esporte e tecnologia em projetos meio sem noção, para mostrar que aprender
+                fazendo pode ser mais interessante e mais divertido do que pagar pela solução
+                “perfeita”.
               </p>
             </div>
           </article>
@@ -156,7 +123,7 @@ export default async function HomePage() {
       </section>
 
       <section className="section-block" id="paginas">
-        <h3 className="section-block__title">Por onde começar</h3>
+        <h3 className="section-block__title">O que já fizemos</h3>
         <p className="section-block__text">Venha ver o que preparamos para compartilhar com vocês!</p>
         <div className="featured-grid">
           {pages.map((page) => (

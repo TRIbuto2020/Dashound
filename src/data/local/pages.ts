@@ -6,7 +6,7 @@ export const pages: ContentPage[] = [
     slug: "tt-lowbudget",
     kind: "project",
     status: "published",
-    eyebrow: "Uma fixa usada • R$ 800 • muitas adaptações",
+    eyebrow: "Uma fixa usada • Um orçamento limitado • muitas gambiarras",
     title: "TT Lowbudget",
     summary:
       "A Laranjinha começou como uma bicicleta fixa de aço. O plano é transformá-la em uma bike de contrarrelógio simples, funcional e divertida, sem fingir que todo improviso dá certo de primeira.",
@@ -30,14 +30,14 @@ export const pages: ContentPage[] = [
         type: "summary",
         title: "O ponto de partida",
         paragraphs: [
-          "Compramos a bicicleta usada por R$ 800. Ela foi parte do kit de uma prova, Night Riders em 2023, e já chegou com guidão bullhorn, selim mais esportivo e rodas de perfil médio, mas ainda funcionava como single speed ou fixa: sem marchas, sem gancheira para câmbio e com freios que precisavam de atenção.",
+          "Compramos a bicicleta usada por R$ 800. Ela foi parte do kit de uma prova, Night Riders em 2023, e já chegou com guidão bullhorn, selim mais esportivo e rodas de perfil médio, mas ainda funcionava como single speed ou fixa: sem marchas, sem gancheira para câmbio e quase nenhuma compatibilidade pros componentes que eu queria colocar.",
           "O objetivo nunca foi construir uma superbike. A proposta é brincar com a ideia de uma TT acessível, reaproveitar o que já temos e registrar o custo e o raciocínio por trás de cada escolha.",
         ],
         items: [
           { label: "Base", value: "Fixa de aço usada" },
           { label: "Compra inicial", value: "R$ 800" },
           { label: "Transmissão", value: "7 velocidades" },
-          { label: "Status", value: "Fase 1 em andamento" },
+          { label: "Status", value: "Fase 1 concluída!" },
         ],
       },
       {
@@ -45,11 +45,11 @@ export const pages: ContentPage[] = [
         type: "timeline",
         title: "A primeira fase",
         introduction:
-          "Nos primeiros episódios, transformamos essa magrela em uma bike TT minimamente viável, mas não sem o devido sufoco! Cada solução revelou o problema seguinte.",
+          "Nos primeiros episódios, transformamos essa magrela em uma bike TT minimamente viável, mas não sem o devido sufoco! Cada solução trazia mais um problema.",
         items: [
           {
             title: "Entender a base",
-            text: "O projeto começou pela bicicleta base e por um plano: mudar posição, realocar os manetes de freios, adicionar transmissão, instalar as barras aero e lidar com os problemas que surgirem ao longo do processo.",
+            text: "O projeto começou pela bicicleta base e por um plano: mudar posição, realocar os manetes de freios, adicionar transmissão, instalar as barras aero e lidar com todos os problemas que surgissem ao longo do processo.",
           },
           {
             title: "Abrir espaço para a roda",
@@ -57,24 +57,30 @@ export const pages: ContentPage[] = [
           },
           {
             title: "Encontrar os primeiros BOs",
-            text: "A primeira coroa tinha BCD 130 e não serviu no pedivela BCD 110. A catraca exigia outra ferramenta e força além do que tínhamos, enquanto o câmbio precisou de uma gancheira temporária.",
+            text: "A primeira coroa que compramos tinha BCD 130 e não serviu no pedivela BCD 110. A catraca exigia outra ferramenta e força além do que tínhamos, enquanto o câmbio precisou de uma gancheira temporária.",
           },
           {
             title: "Saber quando pedir ajuda",
-            text: "A oficina do Zagaia ajudou a remover a catraca antiga e instalar a nova de sete velocidades. Depois, começamos o cabeamento dos freios em uma posição pouco convencional para liberar o cockpit.",
+            text: "A oficina do Zagaia ajudou a remover a catraca antiga e instalar a nova de sete velocidades. Depois, refizemos o cabeamento dos freios em uma posição pouco convencional, para começar a montar o cockpit como uma TT de verdade.",
           },
           {
             title: "Ouvir a comunidade",
-            text: "Uma sugestão dos comentários melhorou a saída dos cabos de freio. As barras aero reaproveitadas não encaixavam no guidão fino, então uns espaçadores de borracha improvisados criaram uma fixação temporária firme.",
+            text: "Uma sugestão dos comentários melhorou a saída dos cabos de freio. As barras aero reaproveitadas não encaixavam no guidão fino, então uns espaçadores de borracha improvisados criaram uma fixação temporária firme o suficiente, eu acho...",
           },
           {
             title: "Dar marchas à Laranjinha",
-            text: "Instalamos um passador por fricção na ponta da barra aero, conduzimos o cabo com conduíte, abraçadeiras e fita isolante e, desta vez com o BCD correto, montamos a nova coroa e a corrente.",
+            text: "Instalamos um passador por fricção na ponta da barra aero, conduzimos o cabo com conduíte, enforca-gato e fita isolante e, desta vez com o BCD correto, montamos a nova coroa e a corrente.",
+          },
+          {
+            title: "Roda fechada artesanal",
+            text: "O último passo dessa primeira etapa foi o mais questionável. Resolvemos fechar a roda traseira com uma chapa de plástico, um tutorial do YouTube, muita fita isolante e um bom punhado de boa vontade. Mas, no fim, acho que ficou bom demais.",
           },
         ],
         callout: {
           title: "Uma observação importante",
-          text: "Esse projeto é uma experiência, não um manual universal. Alterações estruturais, freios e transmissão precisam ser pensados individualmente para cada bicicleta. Cold setting é uma intervenção aplicável a determinados quadros de aço e não deve ser reproduzida em alumínio ou carbono.",
+          text: "Esse projeto é uma experiência, não um manual universal. Alterações estruturais, freios e transmissão precisam ser pensados individualmente para cada bicicleta.",
+          emphasis:
+            "Cold setting é uma intervenção aplicável a determinados quadros de aço e não deve ser reproduzida em alumínio ou carbono!!",
         },
       },
       {
@@ -82,7 +88,7 @@ export const pages: ContentPage[] = [
         type: "table",
         title: "Tabela de custos",
         introduction:
-          "A tabela inclui o que foi comprado, ferramentas que entraram no processo, gastos que não deram certo e o valor hipotético de peças que já estavam disponíveis. Assim, o orçamento não parece mais barato do que foi.",
+          "A tabela inclui o que foi comprado, ferramentas que entraram no processo, gastos que não deram certo e o valor hipotético de peças que já tínhamos aqui antes do projeto. Assim, o orçamento não parece mais barato do que seria pra vocês.",
         caption: "Orçamento parcial do TT Lowbudget (Fase 1)",
         columns: ["Componente", "Preço", "Link"],
         rows: [
@@ -128,7 +134,7 @@ export const pages: ContentPage[] = [
             },
           ],
           [
-            { text: "Placas PS" },
+            { text: "Placas plástico pra fechar a roda" },
             { text: "R$30" },
             {
               text: "Abrir link",
@@ -172,7 +178,7 @@ export const pages: ContentPage[] = [
           [{ text: "Barras Aero" }, { text: "R$75" }, { text: "N/A" }],
         ],
         closing:
-          "O total da planilha é R$ 1.490. Desconsiderando os valores hipotéticos da roda e das barras aero, o gasto registrado até aqui é de R$ 1.265, incluindo ferramentas e compras erradas.",
+          "O total da planilha é R$ 1.490. Desconsiderando os valores hipotéticos da roda e das barras aero e também as compras erradas, o gasto aproveitado até aqui é de R$ 1.242, incluindo ferramentas.",
       },
       {
         id: "lessons",
@@ -181,17 +187,17 @@ export const pages: ContentPage[] = [
         cards: [
           {
             eyebrow: "Compatibilidade",
-            title: "Medir vem antes de comprar",
-            text: "BCD, largura do cubo e diâmetro do guidão transformam uma peça barata em gasto perdido.",
+            title: "Medir muito bem antes de comprar",
+            text: "BCD, largura do cubo e diâmetro do guidão transformaram peças baratas em gasto perdido.",
           },
           {
             eyebrow: "Limites",
             title: "Improvisar não é fazer tudo sozinho",
-            text: "Ferramenta, técnica e segurança também fazem parte do orçamento. Os profissionais ajudaram quando precisava.",
+            text: "Ferramenta, técnica e segurança também fazem parte do orçamento. Pedimos ajuda dos profissionais quando precisamos.",
           },
           {
             eyebrow: "Processo",
-            title: "A versão 1 vai ser provisória",
+            title: "A versão 1 é provisória",
             text: "Algumas soluções existem para testar a ideia agora e indicar o que merece um upgrade depois.",
           },
         ],

@@ -34,6 +34,7 @@ export type TimelineBlock = {
   callout?: {
     title: string;
     text: string;
+    emphasis?: string;
   };
 };
 

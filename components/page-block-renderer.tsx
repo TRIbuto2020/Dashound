@@ -58,6 +58,11 @@ export function PageBlockRenderer({ block }: { block: PageBlock }) {
             <aside className="project-callout">
               <h4 className="project-callout__title">{block.callout.title}</h4>
               <p className="project-callout__text">{block.callout.text}</p>
+              {block.callout.emphasis && (
+                <strong className="project-callout__emphasis">
+                  {block.callout.emphasis}
+                </strong>
+              )}
             </aside>
           )}
         </section>

@@ -1,10 +1,14 @@
 import Link from "next/link";
-import { createPage } from "@/app/admin/actions";
+import { createPage, syncTtLowbudgetPage } from "@/app/admin/actions";
 import { requireAdminUser } from "@/src/lib/auth";
 import { getContentRepository } from "@/src/lib/content";
 import { hasSupabaseEnvironment } from "@/src/lib/env";
 
-export default async function AdminPagesPage() {
+type AdminPagesPageProps = {
+  searchParams: Promise<{ synced?: string }>;
+};
+
+export default async function AdminPagesPage({ searchParams }: AdminPagesPageProps) {
   if (!hasSupabaseEnvironment) {
     return (
       <section className="admin-panel">
@@ -15,6 +19,7 @@ export default async function AdminPagesPage() {
   }
 
   await requireAdminUser();
+  const { synced } = await searchParams;
   const pages = await getContentRepository().listPublishedPages();
 
   return (
@@ -29,6 +34,10 @@ export default async function AdminPagesPage() {
         </Link>
       </div>
 
+      {synced === "tt-lowbudget" && (
+        <p className="admin-notice">TT Lowbudget sincronizada com sucesso.</p>
+      )}
+
       <div className="admin-list">
         {pages.map((page) => (
           <article className="admin-list__item" key={page.id}>
@@ -36,9 +45,18 @@ export default async function AdminPagesPage() {
               <span className="admin-list__eyebrow">{page.kind}</span>
               <h2 className="admin-list__title">{page.title}</h2>
             </div>
-            <Link href={`/projetos/${page.slug}`} target="_blank">
-              Visualizar ↗
-            </Link>
+            <div className="admin-list__actions">
+              <Link href={`/projetos/${page.slug}`} target="_blank">
+                Visualizar ↗
+              </Link>
+              {page.slug === "tt-lowbudget" && (
+                <form action={syncTtLowbudgetPage}>
+                  <button className="ui-button ui-button--nav" type="submit">
+                    Sincronizar TT
+                  </button>
+                </form>
+              )}
+            </div>
           </article>
         ))}
       </div>
