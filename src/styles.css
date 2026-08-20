@@ -512,9 +512,36 @@ ul {
 }
 
 .resource-card__media--tt {
-  background:
-    linear-gradient(135deg, transparent 48%, rgba(255, 183, 3, 0.9) 48% 53%, transparent 53%),
-    linear-gradient(160deg, var(--blue-green), var(--space) 72%);
+  background: linear-gradient(160deg, rgba(33, 158, 188, 0.76), var(--space) 72%);
+}
+
+.resource-card__tt-visual {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+.resource-card__tt-logo-frame {
+  overflow: hidden;
+  display: grid;
+  min-height: 0;
+  place-items: center;
+}
+
+.resource-card__tt-logo {
+  width: 100%;
+  height: auto;
+}
+
+.resource-card__tt-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.15rem);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
 }
 
 .resource-card__media--mosaic {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 type ResourceCardProps = {
   href: string;
@@ -14,6 +15,7 @@ type ResourceCardProps = {
     imageAlt: string;
   }>;
   placeholder?: string;
+  mediaContent?: ReactNode;
   mediaModifier?: "strava" | "instagram" | "youtube" | "tt";
   external?: boolean;
 };
@@ -28,12 +30,13 @@ export function ResourceCard({
   imageAlt = "",
   mosaic,
   placeholder,
+  mediaContent,
   mediaModifier,
   external = false,
 }: ResourceCardProps) {
   const mediaClasses = [
     "resource-card__media",
-    !image && !mosaic ? "resource-card__media--placeholder" : "",
+    !image && !mosaic && !mediaContent ? "resource-card__media--placeholder" : "",
     mosaic ? "resource-card__media--mosaic" : "",
     mediaModifier ? `resource-card__media--${mediaModifier}` : "",
   ]
@@ -42,8 +45,13 @@ export function ResourceCard({
 
   const content = (
     <>
-      <div className={mediaClasses} aria-hidden={!image && !mosaic ? true : undefined}>
-        {mosaic ? (
+      <div
+        className={mediaClasses}
+        aria-hidden={mediaContent || (!image && !mosaic) ? true : undefined}
+      >
+        {mediaContent ? (
+          mediaContent
+        ) : mosaic ? (
           mosaic.map((item) => (
             <Image
               key={item.image}
