@@ -72,7 +72,13 @@ export default async function HomePage() {
           compartilhar o processo.
         </p>
         <div className="about-grid">
-          <article className="about-card">
+          <a
+            className="about-card"
+            href="https://www.instagram.com/katy_terasaka"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Conheça a Katy no Instagram"
+          >
             <div className="about-card__media">
               <Image
                 src="/images/katyProfile.jpeg"
@@ -94,9 +100,15 @@ export default async function HomePage() {
                 uma atleta amadora que leva o esporte a sério.
               </p>
             </div>
-          </article>
+          </a>
 
-          <article className="about-card">
+          <a
+            className="about-card"
+            href="/documents/curriculo-vitor.pdf"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Abrir o currículo do Vitor em PDF"
+          >
             <div className="about-card__media">
               <Image
                 src="/images/vitorProfile.jpeg"
@@ -118,7 +130,7 @@ export default async function HomePage() {
                 “perfeita”.
               </p>
             </div>
-          </article>
+          </a>
         </div>
       </section>
 
