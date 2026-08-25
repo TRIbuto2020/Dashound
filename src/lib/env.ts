@@ -9,6 +9,7 @@ const serverEnvironmentSchema = z.object({
   CONTENT_SOURCE: z.enum(["local", "supabase"]).default("local"),
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
   ADMIN_EMAIL: z.email().optional(),
+  CRON_SECRET: z.string().min(16).optional(),
 });
 
 export const publicEnvironment = publicEnvironmentSchema.parse({
@@ -26,4 +27,5 @@ export const serverEnvironment = serverEnvironmentSchema.parse({
   CONTENT_SOURCE: process.env.CONTENT_SOURCE,
   SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY || undefined,
   ADMIN_EMAIL: process.env.ADMIN_EMAIL || undefined,
+  CRON_SECRET: process.env.CRON_SECRET || undefined,
 });
