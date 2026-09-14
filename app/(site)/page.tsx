@@ -33,6 +33,14 @@ export default async function HomePage() {
             >
               Assista no YouTube ↗
             </a>
+            <a
+              className="ui-button"
+              href="/documents/Apresentacao-Midia-Kit-Katy-2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mídia kit da Katy (PDF) ↗
+            </a>
           </div>
         </div>
 

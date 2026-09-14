@@ -39,6 +39,7 @@
 - The administration area lives in `app/admin` and is protected by the allow-listed Supabase Auth flow.
 - Keep the legacy HTML files only while validating parity and do not edit them as the new source of truth.
 - Header layout remains the brand on the left and shared navigation on the right.
+- Public PDFs live in `public/documents` and are linked via `/documents/<filename>`. The landing hero includes a `ui-button` link to Katy's media kit, opening in a new tab.
 - The landing page lists selected content; individual project-style pages are generated from typed content by slug.
 
 ## Page Map
