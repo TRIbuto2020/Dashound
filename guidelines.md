@@ -37,6 +37,7 @@
 - The local content provider in `src/data/local` is the default until Supabase is configured and imported.
 - The Supabase provider in `src/data/supabase` must implement the same repository interface.
 - The administration area lives in `app/admin` and is protected by the allow-listed Supabase Auth flow.
+- The pages administration list shows both drafts and published pages; only published pages receive a public preview link.
 - Keep the legacy HTML files only while validating parity and do not edit them as the new source of truth.
 - Header layout remains the brand on the left and shared navigation on the right.
 - Public PDFs live in `public/documents` and are linked via `/documents/<filename>`. The landing hero includes a `ui-button` link to Katy's media kit, opening in a new tab.

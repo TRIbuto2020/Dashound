@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { createPage, syncTtLowbudgetPage } from "@/app/admin/actions";
 import { requireAdminUser } from "@/src/lib/auth";
-import { getContentRepository } from "@/src/lib/content";
 import { hasSupabaseEnvironment } from "@/src/lib/env";
+import { createSupabaseServerClient } from "@/src/lib/supabase/server";
 
 type AdminPagesPageProps = {
-  searchParams: Promise<{ synced?: string }>;
+  searchParams: Promise<{ created?: string; synced?: string }>;
 };
 
 export default async function AdminPagesPage({ searchParams }: AdminPagesPageProps) {
@@ -19,8 +19,16 @@ export default async function AdminPagesPage({ searchParams }: AdminPagesPagePro
   }
 
   await requireAdminUser();
-  const { synced } = await searchParams;
-  const pages = await getContentRepository().listPublishedPages();
+  const { created, synced } = await searchParams;
+  const supabase = await createSupabaseServerClient();
+  const { data: pages, error } = await supabase
+    .from("pages")
+    .select("id, slug, kind, status, title")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    throw new Error(`Não foi possível carregar as páginas: ${error.message}`);
+  }
 
   return (
     <section className="admin-panel">
@@ -37,18 +45,23 @@ export default async function AdminPagesPage({ searchParams }: AdminPagesPagePro
       {synced === "tt-lowbudget" && (
         <p className="admin-notice">TT Lowbudget sincronizada com sucesso.</p>
       )}
+      {created === "true" && <p className="admin-notice">Página criada com sucesso.</p>}
 
       <div className="admin-list">
-        {pages.map((page) => (
+        {(pages ?? []).map((page) => (
           <article className="admin-list__item" key={page.id}>
             <div>
-              <span className="admin-list__eyebrow">{page.kind}</span>
+              <span className="admin-list__eyebrow">
+                {page.kind} · {page.status === "published" ? "publicada" : "rascunho"}
+              </span>
               <h2 className="admin-list__title">{page.title}</h2>
             </div>
             <div className="admin-list__actions">
-              <Link href={`/projetos/${page.slug}`} target="_blank">
-                Visualizar ↗
-              </Link>
+              {page.status === "published" && (
+                <Link href={`/projetos/${page.slug}`} target="_blank">
+                  Visualizar ↗
+                </Link>
+              )}
               {page.slug === "tt-lowbudget" && (
                 <form action={syncTtLowbudgetPage}>
                   <button className="ui-button ui-button--nav" type="submit">
