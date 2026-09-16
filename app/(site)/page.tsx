@@ -33,14 +33,6 @@ export default async function HomePage() {
             >
               Assista no YouTube ↗
             </a>
-            <a
-              className="ui-button"
-              href="/documents/Apresentacao-Midia-Kit-Katy-2026.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Mídia kit da Katy (PDF) ↗
-            </a>
           </div>
         </div>
 
@@ -80,13 +72,7 @@ export default async function HomePage() {
           compartilhar o processo.
         </p>
         <div className="about-grid">
-          <a
-            className="about-card"
-            href="https://www.instagram.com/katy_terasaka"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Conheça a Katy no Instagram"
-          >
+          <article className="about-card">
             <div className="about-card__media">
               <Image
                 src="/images/katyProfile.jpeg"
@@ -97,7 +83,17 @@ export default async function HomePage() {
             </div>
             <div className="about-card__content">
               <p className="hero-section__eyebrow">Triatleta e criadora de conteúdo</p>
-              <h4 className="about-card__title">Katy</h4>
+              <h4 className="about-card__title">
+                <a
+                  className="about-card__profile-link"
+                  href="https://www.instagram.com/katy_terasaka"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Conheça a Katy no Instagram"
+                >
+                  Katy
+                </a>
+              </h4>
               <p className="about-card__text">
                 Vive o triathlon entre treinos e o emprego CLT. Adora fazer provas e tem uma enorme
                 curiosidade de entender tudo o que cerca o esporte: equipamentos, tecnologia,
@@ -107,8 +103,16 @@ export default async function HomePage() {
                 Curte discutir assuntos técnicos de forma acessível, sempre a partir da vivência de
                 uma atleta amadora que leva o esporte a sério.
               </p>
+              <a
+                className="ui-button ui-button--featured about-card__action"
+                href="/documents/Apresentacao-Midia-Kit-Katy-2026.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver mídia kit da Katy (PDF) ↗
+              </a>
             </div>
-          </a>
+          </article>
 
           <a
             className="about-card"

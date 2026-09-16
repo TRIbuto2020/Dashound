@@ -78,6 +78,7 @@
 - `section-block__text`: section paragraph text.
 - `ui-button`: shared button and pill-link appearance.
 - `ui-button--nav`: compact header button modifier.
+- `ui-button--featured`: full-width highlighted call-to-action using the brand's amber-to-orange gradient.
 - `project-grid`: responsive grid used to arrange cards.
 - `ui-card`: reusable card body.
 - `ui-card__link`: clickable wrapper when the whole card is a link.
