@@ -91,7 +91,8 @@ export class SupabaseContentRepository implements ContentRepository {
       .from("pages")
       .select("*")
       .eq("status", "published")
-      .order("featured_position", { ascending: true, nullsFirst: false });
+      .order("featured_position", { ascending: true, nullsFirst: false })
+      .order("published_at", { ascending: false });
 
     if (error) {
       throw new Error(`Could not load published pages: ${error.message}`);

@@ -38,6 +38,7 @@
 - The Supabase provider in `src/data/supabase` must implement the same repository interface.
 - The administration area lives in `app/admin` and is protected by the allow-listed Supabase Auth flow.
 - The pages administration list shows both drafts and published pages; only published pages receive a public preview link.
+- Creating a page redirects to its editor, where metadata, card details, text sections, featured placement, and publication status can be managed.
 - Keep the legacy HTML files only while validating parity and do not edit them as the new source of truth.
 - Header layout remains the brand on the left and shared navigation on the right.
 - Public PDFs live in `public/documents` and are linked via `/documents/<filename>`. The landing hero includes a `ui-button` link to Katy's media kit, opening in a new tab.
@@ -47,9 +48,11 @@
 
 - `/` for the landing page
 - `/contato` for contact information
+- `/paginas` for the complete catalog of published pages
 - `/projetos/<slug>` for individual public pages
 - `/admin` for the protected administration dashboard
 - `/admin/paginas` for page creation and publication controls
+- `/admin/paginas/<id>` for page metadata, content blocks, featured placement, and publication
 - `/admin/recomendacoes` for recommendation creation and publication controls
 
 ## Naming

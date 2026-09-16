@@ -57,6 +57,9 @@ export default async function AdminPagesPage({ searchParams }: AdminPagesPagePro
               <h2 className="admin-list__title">{page.title}</h2>
             </div>
             <div className="admin-list__actions">
+              <Link className="ui-button ui-button--nav" href={`/admin/paginas/${page.id}`}>
+                Editar
+              </Link>
               {page.status === "published" && (
                 <Link href={`/projetos/${page.slug}`} target="_blank">
                   Visualizar ↗

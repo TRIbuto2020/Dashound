@@ -23,7 +23,7 @@ export function SiteHeader({ isHome = false }: SiteHeaderProps) {
         <Link className="ui-button ui-button--nav" href={isHome ? "#sobre" : "/#sobre"}>
           Sobre
         </Link>
-        <Link className="ui-button ui-button--nav" href={isHome ? "#paginas" : "/#paginas"}>
+        <Link className="ui-button ui-button--nav" href="/paginas">
           Páginas
         </Link>
         <Link className="ui-button ui-button--nav" href="/contato">
