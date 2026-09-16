@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { ContentPage } from "@/src/core/content/types";
 import { ResourceCard } from "@/components/resource-card";
-import dashoundLogo from "@/src/images/Dashound.svg";
 
 export function PageCard({ page }: { page: ContentPage }) {
   const isTtLowbudget = page.slug === "tt-lowbudget";
@@ -23,8 +22,10 @@ export function PageCard({ page }: { page: ContentPage }) {
             <div className="resource-card__tt-logo-frame">
               <Image
                 className="resource-card__tt-logo"
-                src={dashoundLogo}
+                src="/images/Dashound.svg"
                 alt=""
+                width={1536}
+                height={1024}
               />
             </div>
             <span className="resource-card__tt-title">TT Lowbudget</span>

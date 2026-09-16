@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { PageBlockRenderer } from "@/components/page-block-renderer";
 import { RecommendationSections } from "@/components/recommendation-sections";
-import dashoundLogo from "@/src/images/Dashound.svg";
 import { getContentRepository } from "@/src/lib/content";
 
 type PageProps = {
@@ -76,8 +75,10 @@ export default async function PublicContentPage({ params }: PageProps) {
           page.slug === "tt-lowbudget" ? (
             <Image
               className="hero-section__media-image"
-              src={dashoundLogo}
+              src="/images/Dashound.svg"
               alt="Dashound"
+              width={1536}
+              height={1024}
               priority
             />
           ) : undefined

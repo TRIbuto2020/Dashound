@@ -161,8 +161,8 @@
 - Preserve the current palette and font setup.
 - Favor simple, reusable structure over complex nesting.
 - Keep source videos and research material in `/references`, which is ignored by Git.
-- Store production-ready still images and other optimized assets under `src/images/`.
-- Store recommendation thumbnails under `src/images/links/`; do not hotlink images from Linktree or store pages.
+- Store production-ready still images and other optimized assets under `public/images/`.
+- Store recommendation thumbnails under `public/images/links/`; do not hotlink images from Linktree or store pages.
 - The recommendations page was synchronized from Katy's Linktree on 2026-07-22 and must be updated manually when that source changes.
 - `src/stylesBKUP2.css` is a historical backup and should remain untouched.
 - Keep `CONTENT_SOURCE=local` until the Supabase migration, authentication, and content import are validated.

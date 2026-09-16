@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import dashoundLogo from "@/src/images/dashType.svg";
 
 type SiteHeaderProps = {
   isHome?: boolean;
@@ -13,8 +12,10 @@ export function SiteHeader({ isHome = false }: SiteHeaderProps) {
         <Link className="page-shell__brand-link" href="/" aria-label="Dashound — página inicial">
           <Image
             className="page-shell__brand-image"
-            src={dashoundLogo}
+            src="/images/dashType.svg"
             alt="Dashound"
+            width={1536}
+            height={1024}
             priority
           />
         </Link>
